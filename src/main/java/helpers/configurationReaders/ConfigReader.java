@@ -1,27 +1,31 @@
+package helpers.configurationReaders;
+
 import java.io.*;
 import java.util.Properties;
 
-public class ConfigFile {
-    private final String propertyFilePath= "src/main/resources/config.properties";
-    private File configFile = new File(propertyFilePath);
+public class ConfigReader {
+    private String configFilePath;
     private Properties prop;
+    File configFile;
 
-    public void configFileReader(){
+    public ConfigReader(String configFilePath){
+        this.configFilePath = configFilePath;
         try{
+            configFile = new File(configFilePath);
             FileReader reader = new FileReader(configFile);
             prop = new Properties();
             prop.load(reader);
             reader.close();
         } catch (FileNotFoundException e){
             e.printStackTrace();
-            throw new RuntimeException("config.properties not found at " + propertyFilePath);
+            throw new RuntimeException("common.properties not found at " + configFilePath);
         }catch (IOException e){
             e.printStackTrace();
         }
     }
+
 // Get property from config.file or environment variables
     public String getProperty(String key){
-        configFileReader();
         String value = prop.getProperty(key);
         String valueEnv = System.getProperty(key);
         if (value != null){
