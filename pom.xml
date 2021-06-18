@@ -30,7 +30,10 @@
             <artifactId>commons-configuration</artifactId>
             <version>1.9</version>
         </dependency>
-
-
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-java-commons</artifactId>
+            <version>2.13.8</version>
+        </dependency>
     </dependencies>
 </project>
